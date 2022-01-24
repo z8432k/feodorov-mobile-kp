@@ -4,22 +4,22 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
 public class CommitsRVA extends RecyclerView.Adapter<CommitsRVA.CommitViewHolder> {
-    private List<String> commits;
+    private List<Commit> commits;
+    private final AvatarSetter avatarSetter;
 
     public CommitsRVA() {
-        // noop
+        avatarSetter = new AvatarSetter();
     }
 
-    public void setCommits(List<String> elements) {
+    public void setCommits(List<Commit> elements) {
         commits = elements;
         notifyDataSetChanged();
     }
@@ -31,8 +31,8 @@ public class CommitsRVA extends RecyclerView.Adapter<CommitsRVA.CommitViewHolder
         int layoutId = R.layout.commit;
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(layoutId, parent, false);
-        return new CommitViewHolder(view);
 
+        return new CommitViewHolder(view);
     }
 
     @Override
@@ -49,23 +49,25 @@ public class CommitsRVA extends RecyclerView.Adapter<CommitsRVA.CommitViewHolder
         TextView user;
         TextView email;
         TextView hash;
-        String commit;
-
+        ImageView avatar;
+        Commit commit;
 
         public CommitViewHolder(@NonNull View itemView) {
             super(itemView);
             user = itemView.findViewById(R.id.user_field);
             email = itemView.findViewById(R.id.email_field);
             hash = itemView.findViewById(R.id.hash_field);
+            avatar = itemView.findViewById(R.id.avatar);
         }
 
         void bind(int position) {
             // Put data to element fields
             commit = commits.get(position);
 
-            user.setText(commit);
-            email.setText(commit);
-            hash.setText(commit);
+            user.setText(commit.author.login);
+            email.setText(commit.commit.author.email);
+            hash.setText(commit.hash);
+            avatarSetter.setImage(commit.author.avatarUrl, avatar);
         }
     }
 }

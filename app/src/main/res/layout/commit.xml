@@ -27,6 +27,12 @@ android:orientation="vertical">
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="TextView           3" />
+
+        <ImageView
+            android:id="@+id/avatar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:srcCompat="@tools:sample/avatars" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
 
