@@ -7,8 +7,9 @@
     tools:context=".CommitsList">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id= "@+id/commitsRV"
+        android:id="@+id/commitsRV"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:background="#5900BCD4" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
