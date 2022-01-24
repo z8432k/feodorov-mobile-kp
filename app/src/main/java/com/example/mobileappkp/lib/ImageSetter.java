@@ -1,10 +1,10 @@
-package com.example.mobileappkp;
+package com.example.mobileappkp.lib;
 
 import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;
 
-public class AvatarSetter {
+public class ImageSetter {
     public void setImage(String url, ImageView imageView) {
         Picasso
                 .get()

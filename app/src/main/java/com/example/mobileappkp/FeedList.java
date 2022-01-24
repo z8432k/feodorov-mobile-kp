@@ -7,27 +7,27 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.example.mobileappkp.databinding.ActivityCommitsListBinding;
+import com.example.mobileappkp.databinding.ActivityArticlesListBinding;
 import com.example.mobileappkp.feed.Feed;
-
-import java.util.List;
+import com.example.mobileappkp.lib.FeedRVA;
+import com.example.mobileappkp.lib.RetrofitAPI;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 
-public class CommitsList extends AppCompatActivity {
-    private ActivityCommitsListBinding bindings;
-    private CommitsRVA commitsRVA;
+public class FeedList extends AppCompatActivity {
+    private ActivityArticlesListBinding bindings;
+    private FeedRVA feedRVA;
     private final RetrofitAPI restAPI = new RetrofitAPI();
     private Disposable asyncResult;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_commits_list);
+        setContentView(R.layout.activity_articles_list);
 
-        bindings = ActivityCommitsListBinding.inflate(getLayoutInflater());
+        bindings = ActivityArticlesListBinding.inflate(getLayoutInflater());
         setContentView(bindings.getRoot());
 
         initRecycler();
@@ -39,8 +39,8 @@ public class CommitsList extends AppCompatActivity {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         bindings.commitsRV.setLayoutManager(layoutManager);
 
-        commitsRVA = new CommitsRVA();
-        bindings.commitsRV.setAdapter(commitsRVA);
+        feedRVA = new FeedRVA();
+        bindings.commitsRV.setAdapter(feedRVA);
     }
 
     @NonNull
@@ -59,7 +59,7 @@ public class CommitsList extends AppCompatActivity {
 
     private void itemsToList(Feed response) {
         if (response != null) {
-            commitsRVA.setCommits(response);
+            feedRVA.setCommits(response);
         }
     }
 

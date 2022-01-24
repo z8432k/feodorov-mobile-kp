@@ -1,9 +1,7 @@
-package com.example.mobileappkp;
+package com.example.mobileappkp.lib;
 
 
 import com.example.mobileappkp.feed.Feed;
-
-import java.util.List;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;

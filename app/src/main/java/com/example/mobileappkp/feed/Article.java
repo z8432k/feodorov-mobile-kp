@@ -1,5 +1,6 @@
 package com.example.mobileappkp.feed;
 
+import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 
@@ -16,4 +17,12 @@ public class Article {
 
     @Element(name = "pubDate")
     public String pubDate;
+
+    @Element(name = "enclosure", required = false)
+    public Enclosure enclosure;
+
+    static public class Enclosure {
+        @Attribute(name = "url", required = false)
+        public String url;
+    }
 }

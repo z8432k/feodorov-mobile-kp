@@ -20,10 +20,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(bindings.getRoot());
 
         bindings.callGithub.setOnClickListener((View view) -> {
-            Intent intent = new Intent(this, CommitsList.class);
-
-            intent.putExtra("USER_NAME", bindings.user.getText());
-            intent.putExtra("REPO", bindings.repo.getText());
+            Intent intent = new Intent(this, FeedList.class);
+            
             startActivity(intent);
         });
     }

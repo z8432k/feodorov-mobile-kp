@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GitHubViewr">
         <activity
-            android:name="com.example.mobileappkp.CommitsList"
+            android:name="com.example.mobileappkp.FeedList"
             android:exported="false" />
         <activity
             android:name="com.example.mobileappkp.MainActivity"

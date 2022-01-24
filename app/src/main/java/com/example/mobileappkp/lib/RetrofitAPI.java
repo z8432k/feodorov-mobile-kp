@@ -1,8 +1,6 @@
-package com.example.mobileappkp;
+package com.example.mobileappkp.lib;
 
 import com.example.mobileappkp.feed.Feed;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 
 import io.reactivex.Observable;
@@ -24,7 +22,7 @@ public class RetrofitAPI {
                 .client(client)
                 .baseUrl(baseUrl)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .addConverterFactory(SimpleXmlConverterFactory.create())
+                .addConverterFactory(SimpleXmlConverterFactory.createNonStrict())
                 .build()
                 .create(RetrofitService.class);
     }
