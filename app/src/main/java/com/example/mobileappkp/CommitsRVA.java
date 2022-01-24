@@ -1,4 +1,4 @@
-package com.example.githubviewr;
+package com.example.mobileappkp;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,18 +9,19 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.List;
+import com.example.mobileappkp.feed.Article;
+import com.example.mobileappkp.feed.Feed;
 
 public class CommitsRVA extends RecyclerView.Adapter<CommitsRVA.CommitViewHolder> {
-    private List<Commit> commits;
+    private Feed feed;
     private final AvatarSetter avatarSetter;
 
     public CommitsRVA() {
         avatarSetter = new AvatarSetter();
     }
 
-    public void setCommits(List<Commit> elements) {
-        commits = elements;
+    public void setCommits(Feed data) {
+        feed = data;
         notifyDataSetChanged();
     }
 
@@ -37,12 +38,12 @@ public class CommitsRVA extends RecyclerView.Adapter<CommitsRVA.CommitViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull CommitViewHolder holder, int position) {
-        if(commits != null) holder.bind(position);
+        if(feed != null) holder.bind(position);
     }
 
     @Override
     public int getItemCount() {
-        return commits != null ? commits.size() : 0;
+        return feed != null ? feed.articleList.size() : 0;
     }
 
     class CommitViewHolder extends RecyclerView.ViewHolder {
@@ -50,7 +51,7 @@ public class CommitsRVA extends RecyclerView.Adapter<CommitsRVA.CommitViewHolder
         TextView email;
         TextView hash;
         ImageView avatar;
-        Commit commit;
+        Article article;
 
         public CommitViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -62,12 +63,12 @@ public class CommitsRVA extends RecyclerView.Adapter<CommitsRVA.CommitViewHolder
 
         void bind(int position) {
             // Put data to element fields
-            commit = commits.get(position);
+            article = feed.articleList.get(position);
 
-            user.setText(commit.author.login);
-            email.setText(commit.commit.author.email);
-            hash.setText(commit.hash);
-            avatarSetter.setImage(commit.author.avatarUrl, avatar);
+            user.setText(article.title);
+            email.setText(article.title);
+            hash.setText(article.title);
+            avatarSetter.setImage(article.title, avatar);
         }
     }
 }

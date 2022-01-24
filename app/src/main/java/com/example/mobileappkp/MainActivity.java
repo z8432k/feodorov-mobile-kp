@@ -1,4 +1,4 @@
-package com.example.githubviewr;
+package com.example.mobileappkp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.example.githubviewr.databinding.ActivityMainBinding;
+import com.example.mobileappkp.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding bindings;

@@ -1,4 +1,4 @@
-package com.example.githubviewr;
+package com.example.mobileappkp;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

@@ -1,4 +1,4 @@
-package com.example.githubviewr;
+package com.example.mobileappkp;
 
 import android.content.Context;
 

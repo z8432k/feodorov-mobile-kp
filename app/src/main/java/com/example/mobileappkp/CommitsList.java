@@ -1,12 +1,15 @@
-package com.example.githubviewr;
+package com.example.mobileappkp;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.os.Bundle;
 import android.util.Log;
 
-import com.example.githubviewr.databinding.ActivityCommitsListBinding;
+import com.example.mobileappkp.databinding.ActivityCommitsListBinding;
+import com.example.mobileappkp.feed.Feed;
+
 import java.util.List;
 
 import io.reactivex.Observable;
@@ -27,12 +30,9 @@ public class CommitsList extends AppCompatActivity {
         bindings = ActivityCommitsListBinding.inflate(getLayoutInflater());
         setContentView(bindings.getRoot());
 
-        String user = getData("USER_NAME");
-        String repo = getData("REPO");
-
         initRecycler();
 
-        requestFromServer(user, repo);
+        requestFromServer();
     }
 
     private void initRecycler() {
@@ -43,20 +43,21 @@ public class CommitsList extends AppCompatActivity {
         bindings.commitsRV.setAdapter(commitsRVA);
     }
 
+    @NonNull
     private String getData(String field) {
         Bundle args = getIntent().getExtras();
         return args.get(field).toString();
     }
 
-    public void requestFromServer(String user, String repo) {
-        Observable<List<Commit>> single = restAPI.requestServer(user, repo);
+    public void requestFromServer() {
+        Observable<Feed> single = restAPI.requestServer();
 
         asyncResult = single.observeOn(AndroidSchedulers.mainThread()).subscribe(this::itemsToList, throwable -> {
             Log.e("REST_FAIL", "onError" + throwable);
         });
     }
 
-    private void itemsToList(List<Commit> response) {
+    private void itemsToList(Feed response) {
         if (response != null) {
             commitsRVA.setCommits(response);
         }
